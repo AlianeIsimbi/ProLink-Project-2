@@ -1,12 +1,15 @@
 import { Button } from "./ui/button";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Bell, Settings, User } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
+import { ThemeLanguageSwitcher } from "./ThemeLanguageSwitcher";
+import { useLanguage } from "../contexts/LanguageContext";
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isRegisterDropdownOpen, setIsRegisterDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
+  const { t } = useLanguage();
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -49,19 +52,19 @@ export function Header() {
           <nav className="hidden md:block">
             <div className="ml-10 flex items-center space-x-1">
               <a href="#home" className="px-4 py-2 rounded-full text-white hover:text-white hover:bg-rust-500/20 transition-all">
-                Home
+                {t('home')}
               </a>
               <a href="#features" className="px-4 py-2 rounded-full text-white hover:text-white hover:bg-rust-500/20 transition-all">
-                Features
+                {t('features')}
               </a>
               <a href="#institutions" className="px-4 py-2 rounded-full text-white hover:text-white hover:bg-rust-500/20 transition-all">
-                Institutions
+                {t('institutions')}
               </a>
               <a href="#impact" className="px-4 py-2 rounded-full text-white hover:text-white hover:bg-rust-500/20 transition-all">
-                Impact
+                {t('impact')}
               </a>
               <a href="#about" className="px-4 py-2 rounded-full text-white hover:text-white hover:bg-rust-500/20 transition-all">
-                About
+                {t('about')}
               </a>
             </div>
           </nav>
@@ -74,7 +77,8 @@ export function Header() {
                 size="sm"
                 className="text-rust-200 hover:text-white hover:bg-rust-500/20 transition-all"
               >
-                Login
+                <User className="h-4 w-4 mr-2" />
+                {t('login')}
               </Button>
               <div className="relative" ref={dropdownRef}>
                 <Button 
@@ -82,48 +86,49 @@ export function Header() {
                   onClick={() => setIsRegisterDropdownOpen(!isRegisterDropdownOpen)}
                   className="bg-gradient-to-r from-rust-500 to-rust-600 hover:from-rust-600 hover:to-rust-700 text-white shadow-lg hover:shadow-xl transition-all hover:scale-105 border-0"
                 >
-                  Register
+                  {t('register')}
                 </Button>
                 {/* Dropdown Menu */}
                 {isRegisterDropdownOpen && (
-                  <div className="absolute right-0 mt-2 w-72 bg-white rounded-lg shadow-xl border border-gray-200 z-50">
+                  <div className="absolute right-0 mt-2 w-72 bg-white dark:bg-gray-800 rounded-lg shadow-xl border border-gray-200 dark:border-gray-700 z-50">
                     <div className="py-2">
                       <Link 
                         to="/register/student" 
-                        className="block px-4 py-3 text-sm text-gray-700 hover:bg-rust-50 hover:text-rust-700 transition-colors"
+                        className="block px-4 py-3 text-sm text-gray-700 dark:text-gray-300 hover:bg-rust-50 dark:hover:bg-rust-900/20 hover:text-rust-700 dark:hover:text-rust-300 transition-colors"
                         onClick={() => setIsRegisterDropdownOpen(false)}
                       >
-                        <div className="font-medium">Student Registration</div>
-                        <div className="text-xs text-gray-500">O-level students exploring TVET programs</div>
+                        <div className="font-medium">{t('studentRegistration')}</div>
+                        <div className="text-xs text-gray-500 dark:text-gray-400">O-level students exploring TVET programs</div>
                       </Link>
                       <Link 
                         to="/register/graduate" 
-                        className="block px-4 py-3 text-sm text-gray-700 hover:bg-rust-50 hover:text-rust-700 transition-colors"
+                        className="block px-4 py-3 text-sm text-gray-700 dark:text-gray-300 hover:bg-rust-50 dark:hover:bg-rust-900/20 hover:text-rust-700 dark:hover:text-rust-300 transition-colors"
                         onClick={() => setIsRegisterDropdownOpen(false)}
                       >
-                        <div className="font-medium">Graduate Registration</div>
-                        <div className="text-xs text-gray-500">TVET graduates seeking job opportunities</div>
+                        <div className="font-medium">{t('graduateRegistration')}</div>
+                        <div className="text-xs text-gray-500 dark:text-gray-400">TVET graduates seeking job opportunities</div>
                       </Link>
                       <Link 
                         to="/register/institution" 
-                        className="block px-4 py-3 text-sm text-gray-700 hover:bg-rust-50 hover:text-rust-700 transition-colors"
+                        className="block px-4 py-3 text-sm text-gray-700 dark:text-gray-300 hover:bg-rust-50 dark:hover:bg-rust-900/20 hover:text-rust-700 dark:hover:text-rust-300 transition-colors"
                         onClick={() => setIsRegisterDropdownOpen(false)}
                       >
-                        <div className="font-medium">Institution Registration</div>
-                        <div className="text-xs text-gray-500">TVET institutions managing programs</div>
+                        <div className="font-medium">{t('institutionRegistration')}</div>
+                        <div className="text-xs text-gray-500 dark:text-gray-400">TVET institutions managing programs</div>
                       </Link>
                       <Link 
                         to="/register/company" 
-                        className="block px-4 py-3 text-sm text-gray-700 hover:bg-rust-50 hover:text-rust-700 transition-colors"
+                        className="block px-4 py-3 text-sm text-gray-700 dark:text-gray-300 hover:bg-rust-50 dark:hover:bg-rust-900/20 hover:text-rust-700 dark:hover:text-rust-300 transition-colors"
                         onClick={() => setIsRegisterDropdownOpen(false)}
                       >
-                        <div className="font-medium">Company Registration</div>
-                        <div className="text-xs text-gray-500">Companies hiring skilled graduates</div>
+                        <div className="font-medium">{t('companyRegistration')}</div>
+                        <div className="text-xs text-gray-500 dark:text-gray-400">Companies hiring skilled graduates</div>
                       </Link>
                     </div>
                   </div>
                 )}
               </div>
+              <ThemeLanguageSwitcher />
             </div>
           </div>
 

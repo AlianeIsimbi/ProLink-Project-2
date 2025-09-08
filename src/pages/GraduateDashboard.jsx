@@ -5,6 +5,9 @@ import { Card, CardContent, CardHeader, CardTitle } from "../components/ui/card"
 import { Badge } from "../components/ui/badge";
 import { Input } from "../components/ui/input";
 import { CollaborationHub } from "../components/CollaborationHub";
+import { FunZone } from "../components/FunZone";
+import { ThemeLanguageSwitcher } from "../components/ThemeLanguageSwitcher";
+import { useLanguage } from "../contexts/LanguageContext";
 import { 
   Search, 
   MapPin, 
@@ -31,7 +34,9 @@ import {
   Bookmark,
   Send,
   FileText,
-  CheckCircle
+  CheckCircle,
+  Gamepad2,
+  Cog
 } from "lucide-react";
 
 export function GraduateDashboard() {
@@ -40,6 +45,7 @@ export function GraduateDashboard() {
   const [favorites, setFavorites] = useState(new Set());
   const [userData, setUserData] = useState(null);
   const [activeTab, setActiveTab] = useState("jobs");
+  const { t } = useLanguage();
 
   useEffect(() => {
     const storedData = localStorage.getItem('userData');
@@ -160,8 +166,9 @@ export function GraduateDashboard() {
   };
 
   const tabs = [
-    { id: "jobs", name: "Job Opportunities", icon: Briefcase },
-    { id: "collaboration", name: "Collaboration Hub", icon: MessageCircle },
+    { id: "jobs", name: t('jobOpportunities'), icon: Briefcase },
+    { id: "collaboration", name: t('collaborationHub'), icon: MessageCircle },
+    { id: "fun", name: "Fun Zone", icon: Gamepad2 },
     { id: "applications", name: "My Applications", icon: FileText },
     { id: "saved", name: "Saved Jobs", icon: Bookmark }
   ];
@@ -179,12 +186,14 @@ export function GraduateDashboard() {
               <span className="text-xl font-bold text-gray-900">ProLink</span>
             </Link>
             <div className="flex items-center space-x-4">
-              <Button variant="ghost" size="sm">
+              <Button variant="ghost" size="sm" className="relative">
                 <Bell className="h-4 w-4" />
+                <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">5</span>
               </Button>
               <Button variant="ghost" size="sm">
-                <Settings className="h-4 w-4" />
+                <Cog className="h-4 w-4" />
               </Button>
+              <ThemeLanguageSwitcher />
               <div className="flex items-center space-x-2">
                 <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
                   <User className="h-4 w-4 text-white" />
@@ -426,6 +435,10 @@ export function GraduateDashboard() {
           <div className="h-96">
             <CollaborationHub userData={userData} />
           </div>
+        )}
+
+        {activeTab === "fun" && (
+          <FunZone />
         )}
 
         {activeTab === "applications" && (

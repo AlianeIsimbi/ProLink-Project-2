@@ -5,8 +5,10 @@ import { Input } from "../components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "../components/ui/card";
 import { Badge } from "../components/ui/badge";
 import { ArrowLeft, User, Mail, Phone, MapPin, GraduationCap, BookOpen, Sparkles, CheckCircle } from "lucide-react";
+import { useLanguage } from "../contexts/LanguageContext";
 
 export function StudentRegistration() {
+  const { t } = useLanguage();
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -100,13 +102,13 @@ export function StudentRegistration() {
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {/* Progress Bar */}
         <div className="mb-8">
-          <div className="flex items-center justify-center mb-4">
-            <h1 className="text-3xl font-bold text-gray-900">Student Registration</h1>
-          </div>
+                  <div className="flex items-center justify-center mb-4">
+                    <h1 className="text-3xl font-bold text-gray-900">{t('studentRegistration')}</h1>
+                  </div>
           <div className="w-full max-w-md mx-auto">
             <div className="flex justify-between text-sm text-gray-600 mb-2">
-              <span>Step {currentStep} of {totalSteps}</span>
-              <span>{Math.round((currentStep / totalSteps) * 100)}% Complete</span>
+              <span>{t('step' + currentStep + 'of4')}</span>
+              <span>{Math.round((currentStep / totalSteps) * 100)}% {t('complete')}</span>
             </div>
             <div className="w-full bg-gray-200 rounded-full h-2">
               <div 
