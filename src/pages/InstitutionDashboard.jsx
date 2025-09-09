@@ -4,6 +4,8 @@ import { Button } from "../components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "../components/ui/card";
 import { Badge } from "../components/ui/badge";
 import { Input } from "../components/ui/input";
+import { CollaborationHub } from "../components/CollaborationHub";
+import { FunZone } from "../components/FunZone";
 import { 
   Plus, 
   Edit, 
@@ -20,7 +22,12 @@ import {
   Target,
   Award,
   BarChart3,
-  Settings
+  Settings,
+  MessageCircle,
+  Lightbulb,
+  Briefcase,
+  Bookmark,
+  Gamepad2
 } from "lucide-react";
 
 export function InstitutionDashboard() {
@@ -112,6 +119,19 @@ export function InstitutionDashboard() {
     totalVacancies: 8,
     openVacancies: 5
   };
+
+  const tabs = [
+    { id: "programs", name: "Programs", icon: BookOpen },
+    { id: "collaboration", name: "Collaboration Hub", icon: MessageCircle },
+    { id: "matching", name: "Smart Matching", icon: Target },
+    { id: "skills", name: "Skills Tracking", icon: TrendingUp },
+    { id: "analytics", name: "Analytics", icon: BarChart3 },
+    { id: "resources", name: "Resource Library", icon: Lightbulb },
+    { id: "jobs", name: "Job Board", icon: Briefcase },
+    { id: "fun", name: "Fun Zone", icon: Gamepad2 },
+    { id: "vacancies", name: "Vacancies", icon: Users },
+    { id: "applications", name: "Applications", icon: Bookmark }
+  ];
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -221,52 +241,110 @@ export function InstitutionDashboard() {
         {/* Tabs */}
         <div className="mb-8">
           <div className="border-b border-gray-200">
-            <nav className="-mb-px flex space-x-8">
-              <button
-                onClick={() => setActiveTab("programs")}
-                className={`py-2 px-1 border-b-2 font-medium text-sm ${
-                  activeTab === "programs"
-                    ? "border-primary text-primary"
-                    : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300"
-                }`}
-              >
-                Programs ({programs.length})
-              </button>
-              <button
-                onClick={() => setActiveTab("vacancies")}
-                className={`py-2 px-1 border-b-2 font-medium text-sm ${
-                  activeTab === "vacancies"
-                    ? "border-primary text-primary"
-                    : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300"
-                }`}
-              >
-                Vacancies ({vacancies.length})
-              </button>
-              <button
-                onClick={() => setActiveTab("applications")}
-                className={`py-2 px-1 border-b-2 font-medium text-sm ${
-                  activeTab === "applications"
-                    ? "border-primary text-primary"
-                    : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300"
-                }`}
-              >
-                Applications ({stats.totalApplications})
-              </button>
-              <button
-                onClick={() => setActiveTab("analytics")}
-                className={`py-2 px-1 border-b-2 font-medium text-sm ${
-                  activeTab === "analytics"
-                    ? "border-primary text-primary"
-                    : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300"
-                }`}
-              >
-                Analytics
-              </button>
+            <nav className="-mb-px flex space-x-8 overflow-x-auto">
+              {tabs.map((tab) => {
+                const Icon = tab.icon;
+                return (
+                  <button
+                    key={tab.id}
+                    onClick={() => setActiveTab(tab.id)}
+                    className={`flex items-center py-2 px-1 border-b-2 font-medium text-sm whitespace-nowrap ${
+                      activeTab === tab.id
+                        ? 'border-primary text-primary'
+                        : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                    }`}
+                  >
+                    <Icon className="h-4 w-4 mr-2" />
+                    {tab.name}
+                    {tab.id === "programs" && ` (${programs.length})`}
+                    {tab.id === "vacancies" && ` (${vacancies.length})`}
+                    {tab.id === "applications" && ` (${stats.totalApplications})`}
+                  </button>
+                );
+              })}
             </nav>
           </div>
         </div>
 
         {/* Content based on active tab */}
+        {activeTab === "collaboration" && (
+          <div className="h-96">
+            <CollaborationHub />
+          </div>
+        )}
+
+        {activeTab === "matching" && (
+          <div className="space-y-6">
+            <Card>
+              <CardHeader>
+                <CardTitle>Smart Matching</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="text-center py-8">
+                  <Target className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+                  <p className="text-gray-500">AI-powered student matching coming soon</p>
+                  <p className="text-sm text-gray-400">Match students with programs and industry partners based on skills and interests</p>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        )}
+
+        {activeTab === "skills" && (
+          <div className="space-y-6">
+            <Card>
+              <CardHeader>
+                <CardTitle>Skills Tracking</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="text-center py-8">
+                  <TrendingUp className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+                  <p className="text-gray-500">Track skills development trends</p>
+                  <p className="text-sm text-gray-400">Monitor student skill development and industry demand trends</p>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        )}
+
+        {activeTab === "resources" && (
+          <div className="space-y-6">
+            <Card>
+              <CardHeader>
+                <CardTitle>Resource Library</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="text-center py-8">
+                  <Lightbulb className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+                  <p className="text-gray-500">Institution resources coming soon</p>
+                  <p className="text-sm text-gray-400">Access curriculum materials, industry reports, and teaching resources</p>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        )}
+
+        {activeTab === "jobs" && (
+          <div className="space-y-6">
+            <Card>
+              <CardHeader>
+                <CardTitle>Job Board</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="text-center py-8">
+                  <Briefcase className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+                  <p className="text-gray-500">Job opportunities for graduates coming soon</p>
+                  <p className="text-sm text-gray-400">Help your graduates find employment opportunities</p>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        )}
+
+        {activeTab === "fun" && (
+          <FunZone />
+        )}
+
         {activeTab === "programs" && (
           <div>
             <div className="flex justify-between items-center mb-6">

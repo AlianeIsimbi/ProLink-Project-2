@@ -5,6 +5,7 @@ import {
   GraduationCap, 
   Building2, 
   Users, 
+  Award,
   Network, 
   Target, 
   TrendingUp,
@@ -12,7 +13,15 @@ import {
   BookOpen,
   Briefcase,
   ArrowRight,
-  Sparkles
+  Sparkles,
+  Wrench,
+  Lightbulb,
+  HandHeart,
+  Globe,
+  CheckCircle,
+  Star,
+  Zap,
+  Shield
 } from "lucide-react";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 import { useState, useEffect } from "react";
@@ -41,46 +50,60 @@ export function Features() {
   }, []);
 
   const stakeholders = [
-    {
-      title: "TVET Institutions",
-      description: "Enhance visibility, connect with industry partners, and increase enrollment",
-      icon: GraduationCap,
-      color: "from-rust-400 to-rust-600",
-      features: [
-        "Showcase programs and facilities",
-        "Connect with industry partners",
-        "Track graduate employment rates",
-        "Access funding opportunities"
-      ],
-      image: "https://images.unsplash.com/photo-1721508490084-1b1de5b230d4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjcmVhdGl2ZSUyMGFmcmljYW4lMjBhcnRpc2FuJTIwbWV0YWx3b3JrJTIwY3JhZnR8ZW58MXx8fHwxNzU2NDc3OTc0fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-      cta: "Register Institution"
-    },
-    {
-      title: "Young People & Students",
-      description: "Discover career paths, develop skills, and connect with opportunities",
-      icon: Users,
-      color: "from-rust-300 to-rust-500",
-      features: [
-        "Explore TVET programs",
-        "Find internship opportunities",
-        "Build professional networks",
-        "Access career guidance"
-      ],
-      image: "https://images.unsplash.com/photo-1633112046092-a161d99563d1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhcnRpc3RpYyUyMGNyZWF0aXZlJTIwYWZyaWNhbiUyMHdvcmtzaG9wJTIwcG90dGVyeXxlbnwxfHx8fDE3NTY0Nzc5ODF8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-      cta: "Join as Student"
-    },
+        {
+          title: "TVET Institutions",
+          description: "Enhance visibility, connect with industry partners, and increase enrollment",
+          icon: GraduationCap,
+          color: "from-rust-400 to-rust-600",
+          features: [
+            { text: "Showcase programs and facilities", icon: Building2 },
+            { text: "Connect with industry partners", icon: Network },
+            { text: "Track graduate employment rates", icon: TrendingUp },
+            { text: "Access funding opportunities", icon: HandHeart }
+          ],
+          image: "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=800&h=600&fit=crop",
+          cta: "Register Institution"
+        },
+        {
+          title: "Young People & Students",
+          description: "Discover career paths, develop skills, and connect with opportunities",
+          icon: Users,
+          color: "from-rust-300 to-rust-500",
+          features: [
+            { text: "Explore TVET programs", icon: BookOpen },
+            { text: "Find internship opportunities", icon: Briefcase },
+            { text: "Build professional networks", icon: Users },
+            { text: "Access career guidance", icon: Lightbulb }
+          ],
+          image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=600&fit=crop",
+          cta: "Join as Student"
+        },
+        {
+          title: "TVET Graduates",
+          description: "Find job opportunities, showcase skills, and advance your career",
+          icon: Award,
+          color: "from-blue-400 to-blue-600",
+          features: [
+            { text: "Browse job opportunities", icon: Target },
+            { text: "Showcase your skills portfolio", icon: Star },
+            { text: "Connect with employers", icon: MessageSquare },
+            { text: "Access career development resources", icon: Zap }
+          ],
+          image: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=800&h=600&fit=crop",
+          cta: "Join as Graduate"
+        },
     {
       title: "Private Sector Companies",
       description: "Find skilled talent, partner with institutions, and invest in workforce development",
       icon: Building2,
       color: "from-rust-500 to-rust-700",
       features: [
-        "Recruit skilled graduates",
-        "Partner with TVET institutions",
-        "Offer internship programs",
-        "Invest in skills development"
+        { text: "Recruit skilled graduates", icon: Wrench },
+        { text: "Partner with TVET institutions", icon: Globe },
+        { text: "Offer internship programs", icon: Briefcase },
+        { text: "Invest in skills development", icon: Shield }
       ],
-      image: "https://images.unsplash.com/photo-1738938744238-0f79909b742a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBhZnJpY2FuJTIwYnVzaW5lc3MlMjB0ZWNobm9sb2d5JTIwb2ZmaWNlfGVufDF8fHx8MTc1NjQ3Nzk3OHww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+      image: "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=800&h=600&fit=crop",
       cta: "Register Company"
     }
   ];
@@ -188,32 +211,38 @@ export function Features() {
                     {stakeholder.title}
                   </h3>
                   
-                  <p className="text-lg text-muted-foreground leading-relaxed">
+                  <p className="text-lg text-gray-700 leading-relaxed font-medium">
                     {stakeholder.description}
                   </p>
                 </div>
 
                 <div className="space-y-3">
-                  {stakeholder.features.map((feature, featureIndex) => (
-                    <div 
-                      key={featureIndex} 
-                      className={`flex items-center gap-3 text-foreground ${
-                        visibleCards.includes(index) ? 
-                          `animate-fadeInUp animate-delay-${(featureIndex + 1) * 100}` : 
-                          'opacity-0'
-                      }`}
-                    >
-                      <div className="w-2 h-2 bg-primary rounded-full animate-pulse"></div>
-                      <span>{feature}</span>
-                    </div>
-                  ))}
+                  {stakeholder.features.map((feature, featureIndex) => {
+                    const FeatureIcon = feature.icon;
+                    return (
+                      <div 
+                        key={featureIndex} 
+                        className={`flex items-center gap-3 text-foreground ${
+                          visibleCards.includes(index) ? 
+                            `animate-fadeInUp animate-delay-${(featureIndex + 1) * 100}` : 
+                            'opacity-0'
+                        }`}
+                      >
+                        <div className="w-8 h-8 bg-gradient-to-r from-rust-100 to-rust-200 rounded-lg flex items-center justify-center">
+                          <FeatureIcon className="h-4 w-4 text-rust-600" />
+                        </div>
+                        <span className="font-semibold text-gray-800">{feature.text}</span>
+                      </div>
+                    );
+                  })}
                 </div>
 
                 <div className="pt-4">
                   <Link to={
                     stakeholder.title === "TVET Institutions" ? "/register/institution" :
                     stakeholder.title === "Young People & Students" ? "/register/student" :
-                    "/register/graduate"
+                    stakeholder.title === "TVET Graduates" ? "/register/graduate" :
+                    "/register/company"
                   }>
                     <Button 
                       size="lg" 

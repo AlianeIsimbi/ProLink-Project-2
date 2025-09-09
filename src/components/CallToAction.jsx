@@ -1,6 +1,6 @@
 import { Button } from "./ui/button";
 import { Card, CardContent } from "./ui/card";
-import { ArrowRight, CheckCircle, Sparkles, Zap, Heart } from "lucide-react";
+import { ArrowRight, CheckCircle, Sparkles, Zap, Heart, Users, Building2, Award, Target, Globe, Star, Shield } from "lucide-react";
 import { Link } from "react-router-dom";
 
 export function CallToAction() {

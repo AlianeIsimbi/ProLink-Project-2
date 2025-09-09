@@ -29,28 +29,36 @@ export function FunZone() {
       name: 'Memory Match',
       description: 'Test your memory with TVET-related cards',
       icon: Brain,
-      color: 'bg-blue-500'
+      color: 'bg-gradient-to-r from-blue-500 to-blue-600',
+      image: 'https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=400&h=200&fit=crop',
+      bgColor: 'from-blue-50 to-blue-100'
     },
     {
       id: 'quiz',
       name: 'TVET Quiz',
       description: 'Answer questions about technical education',
       icon: Puzzle,
-      color: 'bg-green-500'
+      color: 'bg-gradient-to-r from-green-500 to-green-600',
+      image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=200&fit=crop',
+      bgColor: 'from-green-50 to-green-100'
     },
     {
       id: 'typing',
       name: 'Speed Typing',
       description: 'Type technical terms as fast as you can',
       icon: Zap,
-      color: 'bg-purple-500'
+      color: 'bg-gradient-to-r from-purple-500 to-purple-600',
+      image: 'https://images.unsplash.com/photo-1516321318423-f06f85b504dc?w=400&h=200&fit=crop',
+      bgColor: 'from-purple-50 to-purple-100'
     },
     {
       id: 'wordsearch',
       name: 'Word Search',
       description: 'Find TVET-related words in the grid',
       icon: Target,
-      color: 'bg-orange-500'
+      color: 'bg-gradient-to-r from-orange-500 to-orange-600',
+      image: 'https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=400&h=200&fit=crop',
+      bgColor: 'from-orange-50 to-orange-100'
     }
   ];
 
@@ -398,28 +406,47 @@ export function FunZone() {
   );
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-8">
       <div className="text-center">
-        <h2 className="text-2xl font-bold text-gray-900 mb-2">Fun Zone</h2>
-        <p className="text-gray-600">Take a break and enjoy some educational games!</p>
+        <div className="flex items-center justify-center mb-4">
+          <div className="w-16 h-16 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full flex items-center justify-center shadow-lg">
+            <Gamepad2 className="h-8 w-8 text-white" />
+          </div>
+        </div>
+        <h2 className="text-3xl font-bold bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent mb-2">Fun Zone 🎮</h2>
+        <p className="text-lg text-gray-600">Take a break and enjoy some educational games!</p>
       </div>
 
       {!activeGame ? (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {games.map((game) => {
             const Icon = game.icon;
             return (
               <Card
                 key={game.id}
-                className="cursor-pointer hover:shadow-lg transition-shadow"
+                className="group cursor-pointer hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 bg-white/80 backdrop-blur-sm border-0 overflow-hidden"
                 onClick={() => startGame(game.id)}
               >
-                <CardContent className="p-6 text-center">
-                  <div className={`w-16 h-16 ${game.color} rounded-full flex items-center justify-center mx-auto mb-4`}>
-                    <Icon className="h-8 w-8 text-white" />
+                <div className="relative overflow-hidden">
+                  <img
+                    src={game.image}
+                    alt={game.name}
+                    className="w-full h-32 object-cover group-hover:scale-110 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="absolute top-3 right-3">
+                    <div className={`w-10 h-10 ${game.color} rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform`}>
+                      <Icon className="h-5 w-5 text-white" />
+                    </div>
                   </div>
-                  <h3 className="text-lg font-semibold mb-2">{game.name}</h3>
-                  <p className="text-sm text-gray-600">{game.description}</p>
+                </div>
+                <CardContent className="p-6 bg-gradient-to-b from-white to-gray-50/50">
+                  <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-gray-700 transition-colors">{game.name}</h3>
+                  <p className="text-sm text-gray-600 leading-relaxed">{game.description}</p>
+                  <div className="mt-4 flex items-center justify-between">
+                    <span className="text-xs font-medium text-gray-500">Click to play</span>
+                    <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                  </div>
                 </CardContent>
               </Card>
             );

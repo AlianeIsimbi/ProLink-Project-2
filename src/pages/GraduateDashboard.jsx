@@ -168,39 +168,49 @@ export function GraduateDashboard() {
   const tabs = [
     { id: "jobs", name: t('jobOpportunities'), icon: Briefcase },
     { id: "collaboration", name: t('collaborationHub'), icon: MessageCircle },
+    { id: "matching", name: "Smart Matching", icon: Target },
+    { id: "skills", name: "Skills Tracking", icon: TrendingUp },
+    { id: "analytics", name: "Analytics", icon: BarChart3 },
+    { id: "resources", name: "Resource Library", icon: Lightbulb },
     { id: "fun", name: "Fun Zone", icon: Gamepad2 },
     { id: "applications", name: "My Applications", icon: FileText },
     { id: "saved", name: "Saved Jobs", icon: Bookmark }
   ];
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gradient-to-br from-rust-50 via-amber-50 to-orange-50">
       {/* Header */}
-      <header className="bg-white shadow-sm border-b">
+      <header className="bg-gradient-to-r from-rust-100/90 to-amber-100/90 backdrop-blur-md shadow-lg border-b border-rust-200/50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <Link to="/" className="flex items-center space-x-3">
               <div className="w-8 h-8 bg-gradient-to-r from-rust-500 to-rust-600 rounded-lg flex items-center justify-center">
                 <div className="w-4 h-4 bg-white rounded-sm"></div>
               </div>
-              <span className="text-xl font-bold text-gray-900">ProLink</span>
+              <span className="text-xl font-bold bg-gradient-to-r from-rust-800 to-amber-800 bg-clip-text text-transparent drop-shadow-sm">ProLink</span>
             </Link>
             <div className="flex items-center space-x-4">
-              <Button variant="ghost" size="sm" className="relative">
+              <Button variant="ghost" size="sm" className="relative text-rust-700 hover:bg-rust-200/50">
                 <Bell className="h-4 w-4" />
                 <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">5</span>
               </Button>
-              <Button variant="ghost" size="sm">
+              <Button variant="ghost" size="sm" className="text-rust-700 hover:bg-rust-200/50">
                 <Cog className="h-4 w-4" />
               </Button>
               <ThemeLanguageSwitcher />
-              <div className="flex items-center space-x-2">
-                <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
-                  <User className="h-4 w-4 text-white" />
+              <div className="flex items-center space-x-3 bg-gradient-to-r from-rust-50 to-orange-50 px-4 py-2 rounded-full border border-rust-200">
+                <div className="relative">
+                  <div className="w-10 h-10 rounded-full bg-gradient-to-r from-rust-200 to-amber-200 flex items-center justify-center border-2 border-rust-300 shadow-md text-2xl">
+                    {userData?.emoji || "🎓"}
+                  </div>
+                  <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-green-500 rounded-full border-2 border-white"></div>
                 </div>
-                <span className="text-sm font-medium text-gray-700">
-                  {userData ? `${userData.firstName} ${userData.lastName}` : 'Graduate'}
-                </span>
+                <div className="flex flex-col">
+                  <span className="text-sm font-semibold text-rust-800">
+                    {userData ? `${userData.firstName} ${userData.lastName}` : 'Graduate'}
+                  </span>
+                  <span className="text-xs text-rust-600 font-medium">Online</span>
+                </div>
               </div>
             </div>
           </div>
@@ -452,6 +462,74 @@ export function GraduateDashboard() {
                   <FileText className="h-12 w-12 text-gray-400 mx-auto mb-4" />
                   <p className="text-gray-500">No applications yet</p>
                   <p className="text-sm text-gray-400">Start applying to jobs to track your applications here</p>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        )}
+
+        {activeTab === "matching" && (
+          <div className="space-y-6">
+            <Card>
+              <CardHeader>
+                <CardTitle>Smart Matching</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="text-center py-8">
+                  <Target className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+                  <p className="text-gray-500">AI-powered job matching coming soon</p>
+                  <p className="text-sm text-gray-400">Get personalized job recommendations based on your skills and preferences</p>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        )}
+
+        {activeTab === "skills" && (
+          <div className="space-y-6">
+            <Card>
+              <CardHeader>
+                <CardTitle>Skills Tracking</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="text-center py-8">
+                  <TrendingUp className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+                  <p className="text-gray-500">Track your skill development progress</p>
+                  <p className="text-sm text-gray-400">Monitor your learning journey and see industry demand for your skills</p>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        )}
+
+        {activeTab === "analytics" && (
+          <div className="space-y-6">
+            <Card>
+              <CardHeader>
+                <CardTitle>Analytics Dashboard</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="text-center py-8">
+                  <BarChart3 className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+                  <p className="text-gray-500">Career analytics coming soon</p>
+                  <p className="text-sm text-gray-400">View insights about job market trends and your career opportunities</p>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        )}
+
+        {activeTab === "resources" && (
+          <div className="space-y-6">
+            <Card>
+              <CardHeader>
+                <CardTitle>Resource Library</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="text-center py-8">
+                  <Lightbulb className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+                  <p className="text-gray-500">Professional resources coming soon</p>
+                  <p className="text-sm text-gray-400">Access learning materials, industry reports, and career development resources</p>
                 </div>
               </CardContent>
             </Card>

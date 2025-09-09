@@ -1,5 +1,5 @@
 import { Card, CardContent } from "./ui/card";
-import { TrendingUp, Users, Building, BookOpen, Target, Award } from "lucide-react";
+import { TrendingUp, Users, Building, BookOpen, Target, Award, CheckCircle, Star, Globe, Zap, Shield, HandHeart } from "lucide-react";
 
 export function Stats() {
   const stats = [
@@ -48,7 +48,7 @@ export function Stats() {
           <h2 className="text-3xl md:text-4xl text-gray-900 mb-4">
             Driving National Impact
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="text-xl text-gray-700 max-w-3xl mx-auto font-medium">
             ProLink is positioned to create significant impact across the country's skills development ecosystem
           </p>
         </div>
@@ -62,7 +62,7 @@ export function Stats() {
                 </div>
                 <div className="text-3xl text-gray-900 mb-2">{stat.value}</div>
                 <h3 className="text-lg text-gray-900 mb-2">{stat.label}</h3>
-                <p className="text-gray-600">{stat.description}</p>
+                <p className="text-gray-700 font-medium">{stat.description}</p>
               </CardContent>
             </Card>
           ))}
@@ -74,25 +74,33 @@ export function Stats() {
               <h3 className="text-2xl text-gray-900 mb-4">
                 Supporting Rwanda's Vision 2050
               </h3>
-              <p className="text-gray-700 mb-6">
+              <p className="text-gray-800 mb-6 font-medium">
                 Our platform directly contributes to Rwanda's national development strategy by:
               </p>
               <ul className="space-y-3">
                 <li className="flex items-start gap-3">
-                  <div className="w-2 h-2 bg-primary rounded-full mt-2"></div>
-                  <span className="text-gray-700">Reducing youth unemployment through skills-job matching</span>
+                  <div className="w-6 h-6 bg-gradient-to-r from-rust-100 to-rust-200 rounded-lg flex items-center justify-center mt-1">
+                    <Target className="h-3 w-3 text-rust-600" />
+                  </div>
+                  <span className="text-gray-800 font-medium">Reducing youth unemployment through skills-job matching</span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <div className="w-2 h-2 bg-primary rounded-full mt-2"></div>
-                  <span className="text-gray-700">Strengthening public-private partnerships in education</span>
+                  <div className="w-6 h-6 bg-gradient-to-r from-rust-100 to-rust-200 rounded-lg flex items-center justify-center mt-1">
+                    <Globe className="h-3 w-3 text-rust-600" />
+                  </div>
+                  <span className="text-gray-800 font-medium">Strengthening public-private partnerships in education</span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <div className="w-2 h-2 bg-primary rounded-full mt-2"></div>
-                  <span className="text-gray-700">Building a skilled workforce for economic transformation</span>
+                  <div className="w-6 h-6 bg-gradient-to-r from-rust-100 to-rust-200 rounded-lg flex items-center justify-center mt-1">
+                    <Zap className="h-3 w-3 text-rust-600" />
+                  </div>
+                  <span className="text-gray-800 font-medium">Building a skilled workforce for economic transformation</span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <div className="w-2 h-2 bg-primary rounded-full mt-2"></div>
-                  <span className="text-gray-700">Promoting innovation and entrepreneurship</span>
+                  <div className="w-6 h-6 bg-gradient-to-r from-rust-100 to-rust-200 rounded-lg flex items-center justify-center mt-1">
+                    <Star className="h-3 w-3 text-rust-600" />
+                  </div>
+                  <span className="text-gray-800 font-medium">Promoting innovation and entrepreneurship</span>
                 </li>
               </ul>
             </div>
@@ -100,20 +108,32 @@ export function Stats() {
               <h4 className="text-xl text-gray-900 mb-4">Expected Outcomes</h4>
               <div className="space-y-4">
                 <div className="flex justify-between items-center">
-                  <span className="text-gray-700">TVET Enrollment Increase</span>
-                  <span className="text-primary">+40%</span>
+                  <div className="flex items-center gap-2">
+                    <BookOpen className="h-4 w-4 text-rust-600" />
+                    <span className="text-gray-800 font-medium">TVET Enrollment Increase</span>
+                  </div>
+                  <span className="text-primary font-semibold">+40%</span>
                 </div>
                 <div className="flex justify-between items-center">
-                  <span className="text-gray-700">Graduate Employment Rate</span>
-                  <span className="text-primary">85%</span>
+                  <div className="flex items-center gap-2">
+                    <Award className="h-4 w-4 text-rust-600" />
+                    <span className="text-gray-800 font-medium">Graduate Employment Rate</span>
+                  </div>
+                  <span className="text-primary font-semibold">85%</span>
                 </div>
                 <div className="flex justify-between items-center">
-                  <span className="text-gray-700">Industry Partnerships</span>
-                  <span className="text-primary">+200</span>
+                  <div className="flex items-center gap-2">
+                    <Building className="h-4 w-4 text-rust-600" />
+                    <span className="text-gray-800 font-medium">Industry Partnerships</span>
+                  </div>
+                  <span className="text-primary font-semibold">+200</span>
                 </div>
                 <div className="flex justify-between items-center">
-                  <span className="text-gray-700">Skills Gap Reduction</span>
-                  <span className="text-primary">30%</span>
+                  <div className="flex items-center gap-2">
+                    <TrendingUp className="h-4 w-4 text-rust-600" />
+                    <span className="text-gray-800 font-medium">Skills Gap Reduction</span>
+                  </div>
+                  <span className="text-primary font-semibold">30%</span>
                 </div>
               </div>
             </div>

@@ -4,6 +4,8 @@ import { Button } from "../components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "../components/ui/card";
 import { Badge } from "../components/ui/badge";
 import { Input } from "../components/ui/input";
+import { CollaborationHub } from "../components/CollaborationHub";
+import { FunZone } from "../components/FunZone";
 import { 
   Search, 
   Filter, 
@@ -23,13 +25,19 @@ import {
   Target,
   TrendingUp,
   Briefcase,
-  GraduationCap
+  GraduationCap,
+  BarChart3,
+  Lightbulb,
+  Bookmark,
+  Gamepad2,
+  Clock
 } from "lucide-react";
 
 export function CompanyDashboard() {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [favorites, setFavorites] = useState(new Set());
+  const [activeTab, setActiveTab] = useState("graduates");
 
   const categories = [
     { id: "all", name: "All Graduates", count: 156 },
@@ -123,6 +131,18 @@ export function CompanyDashboard() {
     });
   };
 
+  const tabs = [
+    { id: "graduates", name: "Find Graduates", icon: GraduationCap },
+    { id: "collaboration", name: "Collaboration Hub", icon: MessageCircle },
+    { id: "matching", name: "Smart Matching", icon: Target },
+    { id: "skills", name: "Skills Tracking", icon: TrendingUp },
+    { id: "analytics", name: "Analytics", icon: BarChart3 },
+    { id: "resources", name: "Resource Library", icon: Lightbulb },
+    { id: "jobs", name: "Job Board", icon: Briefcase },
+    { id: "fun", name: "Fun Zone", icon: Gamepad2 },
+    { id: "saved", name: "Saved", icon: Bookmark }
+  ];
+
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
@@ -206,131 +226,273 @@ export function CompanyDashboard() {
           </Card>
         </div>
 
-        {/* Search and Filter */}
+        {/* Tabs */}
         <div className="mb-8">
-          <div className="flex flex-col md:flex-row gap-4">
-            <div className="flex-1">
-              <div className="relative">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
-                <Input
-                  placeholder="Search graduates by name, skills, or specialization..."
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                  className="pl-10"
-                />
-              </div>
-            </div>
-            <div className="flex gap-2">
-              {categories.map((category) => (
-                <Button
-                  key={category.id}
-                  variant={selectedCategory === category.id ? "default" : "outline"}
-                  size="sm"
-                  onClick={() => setSelectedCategory(category.id)}
-                  className="whitespace-nowrap"
-                >
-                  {category.name} ({category.count})
-                </Button>
-              ))}
-            </div>
+          <div className="border-b border-gray-200">
+            <nav className="-mb-px flex space-x-8">
+              {tabs.map((tab) => {
+                const Icon = tab.icon;
+                return (
+                  <button
+                    key={tab.id}
+                    onClick={() => setActiveTab(tab.id)}
+                    className={`flex items-center py-2 px-1 border-b-2 font-medium text-sm ${
+                      activeTab === tab.id
+                        ? 'border-primary text-primary'
+                        : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                    }`}
+                  >
+                    <Icon className="h-4 w-4 mr-2" />
+                    {tab.name}
+                  </button>
+                );
+              })}
+            </nav>
           </div>
         </div>
 
-        {/* Graduates Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredGraduates.map((graduate) => (
-            <Card key={graduate.id} className="group hover:shadow-lg transition-shadow">
-              <CardContent className="p-6">
-                <div className="flex items-start justify-between mb-4">
-                  <div className="flex items-center space-x-3">
-                    <img
-                      src={graduate.profileImage}
-                      alt={graduate.name}
-                      className="w-12 h-12 rounded-full object-cover"
+        {/* Tab Content */}
+        {activeTab === "graduates" && (
+          <>
+            {/* Search and Filter */}
+            <div className="mb-8">
+              <div className="flex flex-col md:flex-row gap-4">
+                <div className="flex-1">
+                  <div className="relative">
+                    <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
+                    <Input
+                      placeholder="Search graduates by name, skills, or specialization..."
+                      value={searchTerm}
+                      onChange={(e) => setSearchTerm(e.target.value)}
+                      className="pl-10"
                     />
-                    <div>
-                      <h3 className="text-lg font-semibold text-gray-900 group-hover:text-primary transition-colors">
-                        {graduate.name}
-                      </h3>
-                      <p className="text-sm text-gray-600">{graduate.title}</p>
-                    </div>
-                  </div>
-                  <button
-                    onClick={() => toggleFavorite(graduate.id)}
-                    className="p-2 hover:bg-gray-100 rounded-full"
-                  >
-                    <Heart 
-                      className={`h-4 w-4 ${
-                        favorites.has(graduate.id) ? 'text-red-500 fill-current' : 'text-gray-400'
-                      }`} 
-                    />
-                  </button>
-                </div>
-
-                <div className="space-y-3 mb-4">
-                  <div className="flex items-center text-sm text-gray-600">
-                    <Building2 className="h-4 w-4 mr-2" />
-                    {graduate.institution}
-                  </div>
-                  <div className="flex items-center text-sm text-gray-600">
-                    <MapPin className="h-4 w-4 mr-2" />
-                    {graduate.location}
-                  </div>
-                  <div className="flex items-center text-sm text-gray-600">
-                    <Calendar className="h-4 w-4 mr-2" />
-                    {graduate.experience} experience
-                  </div>
-                  <div className="flex items-center text-sm text-gray-600">
-                    <Star className="h-4 w-4 mr-2 text-yellow-400" />
-                    {graduate.rating}/5.0
-                  </div>
-                  <div className="flex items-center text-sm text-gray-600">
-                    <Clock className="h-4 w-4 mr-2" />
-                    Available: {graduate.availability}
                   </div>
                 </div>
-
-                <div className="mb-4">
-                  <p className="text-sm text-gray-700 mb-2">{graduate.description}</p>
-                  <div className="flex flex-wrap gap-1">
-                    {graduate.skills.map((skill) => (
-                      <Badge key={skill} variant="outline" className="text-xs">
-                        {skill}
-                      </Badge>
-                    ))}
-                  </div>
-                </div>
-
-                <div className="bg-gray-50 rounded-lg p-3 mb-4">
-                  <div className="text-sm">
-                    <p className="font-medium text-gray-900 mb-1">Expected Salary:</p>
-                    <p className="text-primary font-semibold">{graduate.expectedSalary}</p>
-                  </div>
-                </div>
-
                 <div className="flex gap-2">
-                  <Button className="flex-1 group">
-                    <MessageCircle className="h-4 w-4 mr-2" />
-                    Contact
-                  </Button>
-                  <Button variant="outline" size="sm">
-                    <Eye className="h-4 w-4" />
-                  </Button>
-                  <Button variant="outline" size="sm">
-                    <Share2 className="h-4 w-4" />
-                  </Button>
+                  {categories.map((category) => (
+                    <Button
+                      key={category.id}
+                      variant={selectedCategory === category.id ? "default" : "outline"}
+                      size="sm"
+                      onClick={() => setSelectedCategory(category.id)}
+                      className="whitespace-nowrap"
+                    >
+                      {category.name} ({category.count})
+                    </Button>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* Graduates Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {filteredGraduates.map((graduate) => (
+                <Card key={graduate.id} className="group hover:shadow-lg transition-shadow">
+                  <CardContent className="p-6">
+                    <div className="flex items-start justify-between mb-4">
+                      <div className="flex items-center space-x-3">
+                        <img
+                          src={graduate.profileImage}
+                          alt={graduate.name}
+                          className="w-12 h-12 rounded-full object-cover"
+                        />
+                        <div>
+                          <h3 className="text-lg font-semibold text-gray-900 group-hover:text-primary transition-colors">
+                            {graduate.name}
+                          </h3>
+                          <p className="text-sm text-gray-600">{graduate.title}</p>
+                        </div>
+                      </div>
+                      <button
+                        onClick={() => toggleFavorite(graduate.id)}
+                        className="p-2 hover:bg-gray-100 rounded-full"
+                      >
+                        <Heart 
+                          className={`h-4 w-4 ${
+                            favorites.has(graduate.id) ? 'text-red-500 fill-current' : 'text-gray-400'
+                          }`} 
+                        />
+                      </button>
+                    </div>
+
+                    <div className="space-y-3 mb-4">
+                      <div className="flex items-center text-sm text-gray-600">
+                        <Building2 className="h-4 w-4 mr-2" />
+                        {graduate.institution}
+                      </div>
+                      <div className="flex items-center text-sm text-gray-600">
+                        <MapPin className="h-4 w-4 mr-2" />
+                        {graduate.location}
+                      </div>
+                      <div className="flex items-center text-sm text-gray-600">
+                        <Calendar className="h-4 w-4 mr-2" />
+                        {graduate.experience} experience
+                      </div>
+                      <div className="flex items-center text-sm text-gray-600">
+                        <Star className="h-4 w-4 mr-2 text-yellow-400" />
+                        {graduate.rating}/5.0
+                      </div>
+                      <div className="flex items-center text-sm text-gray-600">
+                        <Clock className="h-4 w-4 mr-2" />
+                        Available: {graduate.availability}
+                      </div>
+                    </div>
+
+                    <div className="mb-4">
+                      <p className="text-sm text-gray-700 mb-2">{graduate.description}</p>
+                      <div className="flex flex-wrap gap-1">
+                        {graduate.skills.map((skill) => (
+                          <Badge key={skill} variant="outline" className="text-xs">
+                            {skill}
+                          </Badge>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div className="bg-gray-50 rounded-lg p-3 mb-4">
+                      <div className="text-sm">
+                        <p className="font-medium text-gray-900 mb-1">Expected Salary:</p>
+                        <p className="text-primary font-semibold">{graduate.expectedSalary}</p>
+                      </div>
+                    </div>
+
+                    <div className="flex gap-2">
+                      <Button className="flex-1 group">
+                        <MessageCircle className="h-4 w-4 mr-2" />
+                        Contact
+                      </Button>
+                      <Button variant="outline" size="sm">
+                        <Eye className="h-4 w-4" />
+                      </Button>
+                      <Button variant="outline" size="sm">
+                        <Share2 className="h-4 w-4" />
+                      </Button>
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+
+            {/* Load More */}
+            <div className="text-center mt-8">
+              <Button variant="outline" size="lg">
+                Load More Graduates
+              </Button>
+            </div>
+          </>
+        )}
+
+        {activeTab === "collaboration" && (
+          <div className="h-96">
+            <CollaborationHub />
+          </div>
+        )}
+
+        {activeTab === "matching" && (
+          <div className="space-y-6">
+            <Card>
+              <CardHeader>
+                <CardTitle>Smart Matching</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="text-center py-8">
+                  <Target className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+                  <p className="text-gray-500">AI-powered candidate matching coming soon</p>
+                  <p className="text-sm text-gray-400">Get personalized graduate recommendations based on your job requirements</p>
                 </div>
               </CardContent>
             </Card>
-          ))}
-        </div>
+          </div>
+        )}
 
-        {/* Load More */}
-        <div className="text-center mt-8">
-          <Button variant="outline" size="lg">
-            Load More Graduates
-          </Button>
-        </div>
+        {activeTab === "skills" && (
+          <div className="space-y-6">
+            <Card>
+              <CardHeader>
+                <CardTitle>Skills Tracking</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="text-center py-8">
+                  <TrendingUp className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+                  <p className="text-gray-500">Track industry skills trends</p>
+                  <p className="text-sm text-gray-400">Monitor skill development trends and industry demand</p>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        )}
+
+        {activeTab === "analytics" && (
+          <div className="space-y-6">
+            <Card>
+              <CardHeader>
+                <CardTitle>Analytics Dashboard</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="text-center py-8">
+                  <BarChart3 className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+                  <p className="text-gray-500">Company analytics coming soon</p>
+                  <p className="text-sm text-gray-400">View insights about hiring trends and candidate performance</p>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        )}
+
+        {activeTab === "resources" && (
+          <div className="space-y-6">
+            <Card>
+              <CardHeader>
+                <CardTitle>Resource Library</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="text-center py-8">
+                  <Lightbulb className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+                  <p className="text-gray-500">Company resources coming soon</p>
+                  <p className="text-sm text-gray-400">Access hiring guides, industry reports, and best practices</p>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        )}
+
+        {activeTab === "jobs" && (
+          <div className="space-y-6">
+            <Card>
+              <CardHeader>
+                <CardTitle>Job Board</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="text-center py-8">
+                  <Briefcase className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+                  <p className="text-gray-500">Job posting management coming soon</p>
+                  <p className="text-sm text-gray-400">Manage your job postings and applications</p>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        )}
+
+        {activeTab === "fun" && (
+          <FunZone />
+        )}
+
+        {activeTab === "saved" && (
+          <div className="space-y-6">
+            <Card>
+              <CardHeader>
+                <CardTitle>Saved Graduates</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="text-center py-8">
+                  <Bookmark className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+                  <p className="text-gray-500">No saved graduates yet</p>
+                  <p className="text-sm text-gray-400">Save graduates you're interested in to view them here</p>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        )}
       </div>
     </div>
   );

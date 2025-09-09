@@ -2,9 +2,11 @@ import { Button } from "./ui/button";
 import { ArrowRight, Users, BookOpen, Building2, Sparkles } from "lucide-react";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 import { useEffect, useState } from "react";
+import { RegistrationModal } from "./RegistrationModal";
 
 export function Hero() {
   const [isVisible, setIsVisible] = useState(false);
+  const [showRegistrationModal, setShowRegistrationModal] = useState(false);
 
   useEffect(() => {
     setIsVisible(true);
@@ -43,7 +45,7 @@ export function Hero() {
                 <span className="block text-foreground">Together</span>
               </h1>
               
-              <p className="text-lg text-muted-foreground leading-relaxed max-w-xl">
+              <p className="text-lg text-gray-700 leading-relaxed max-w-xl font-medium">
                 ProLink creates dynamic bridges between TVET institutions, 
                 ambitious young people, and forward-thinking companies. Build the future 
                 through strategic skills partnerships.
@@ -52,13 +54,19 @@ export function Hero() {
 
             {/* Action buttons */}
             <div className={`flex flex-col sm:flex-row gap-4 ${isVisible ? 'animate-fadeInUp animate-delay-200' : 'opacity-0'}`}>
-              <Button size="lg" className="group px-8 py-4 bg-primary hover:bg-rust-700 text-white shadow-lg hover-lift">
+              <Button 
+                size="lg" 
+                className="group px-8 py-4 bg-primary hover:bg-rust-700 text-white shadow-lg hover-lift"
+                onClick={() => setShowRegistrationModal(true)}
+              >
                 <span>Get Started</span>
                 <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
               </Button>
-              <Button variant="outline" size="lg" className="px-8 py-4 border-rust-300 text-rust-700 hover:bg-rust-50 shadow-md">
-                Explore Features
-              </Button>
+              <a href="#features">
+                <Button variant="outline" size="lg" className="px-8 py-4 border-rust-300 text-rust-700 hover:bg-rust-50 shadow-md">
+                  Explore Features
+                </Button>
+              </a>
             </div>
             
             {/* Animated Stats */}
@@ -68,21 +76,21 @@ export function Hero() {
                   <Users className="h-8 w-8 text-primary mr-2 animate-float" />
                 </div>
                 <div className="text-2xl text-foreground">2.5K+</div>
-                <div className="text-sm text-muted-foreground">Students</div>
+                <div className="text-sm text-gray-600 font-medium">Students</div>
               </div>
               <div className="text-center hover-lift">
                 <div className="flex items-center justify-center mb-2">
                   <BookOpen className="h-8 w-8 text-primary mr-2 animate-float animate-delay-100" />
                 </div>
                 <div className="text-2xl text-foreground">150+</div>
-                <div className="text-sm text-muted-foreground">Programs</div>
+                <div className="text-sm text-gray-600 font-medium">Programs</div>
               </div>
               <div className="text-center hover-lift">
                 <div className="flex items-center justify-center mb-2">
                   <Building2 className="h-8 w-8 text-primary mr-2 animate-float animate-delay-200" />
                 </div>
                 <div className="text-2xl text-foreground">300+</div>
-                <div className="text-sm text-muted-foreground">Partners</div>
+                <div className="text-sm text-gray-600 font-medium">Partners</div>
               </div>
             </div>
           </div>
@@ -108,7 +116,7 @@ export function Hero() {
                   <Sparkles className="h-6 w-6 text-primary" />
                 </div>
                 <div>
-                  <div className="text-sm text-muted-foreground">Success Rate</div>
+                  <div className="text-sm text-gray-600 font-medium">Success Rate</div>
                   <div className="text-xl text-primary">95%</div>
                 </div>
               </div>
@@ -116,6 +124,12 @@ export function Hero() {
           </div>
         </div>
       </div>
+
+      {/* Registration Modal */}
+      <RegistrationModal 
+        isOpen={showRegistrationModal} 
+        onClose={() => setShowRegistrationModal(false)} 
+      />
     </section>
   );
 }

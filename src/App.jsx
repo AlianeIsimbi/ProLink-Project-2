@@ -4,6 +4,8 @@ import { LanguageProvider } from "./contexts/LanguageContext";
 import { Header } from "./components/Header";
 import { Hero } from "./components/Hero";
 import { Features } from "./components/Features";
+import { TVETVideoSection } from "./components/TVETVideoSection";
+import { SuccessStories } from "./components/SuccessStories";
 import { Stats } from "./components/Stats";
 import { CallToAction } from "./components/CallToAction";
 import { Footer } from "./components/Footer";
@@ -15,18 +17,27 @@ import { StudentDashboard } from "./pages/StudentDashboard";
 import { GraduateDashboard } from "./pages/GraduateDashboard";
 import { InstitutionDashboard } from "./pages/InstitutionDashboard";
 import { CompanyDashboard } from "./pages/CompanyDashboard";
+import { SuccessStoryDetail } from "./pages/SuccessStoryDetail";
 
 function HomePage() {
   return (
     <div className="min-h-screen bg-blur-pattern relative">
       <Header />
       <main className="relative pt-16">
-        <Hero />
-        <div id="features">
+        <div id="home">
+          <Hero />
+        </div>
+        <div id="services">
           <Features />
         </div>
-        <div id="impact">
+        <div id="features">
           <Stats />
+        </div>
+        <div id="tvet-video">
+          <TVETVideoSection />
+        </div>
+        <div id="success-stories">
+          <SuccessStories />
         </div>
         <CallToAction />
       </main>
@@ -46,10 +57,11 @@ export default function App() {
             <Route path="/register/graduate" element={<GraduateRegistration />} />
             <Route path="/register/institution" element={<InstitutionRegistration />} />
             <Route path="/register/company" element={<CompanyRegistration />} />
-            <Route path="/dashboard/student" element={<StudentDashboard />} />
-            <Route path="/dashboard/graduate" element={<GraduateDashboard />} />
-            <Route path="/dashboard/institution" element={<InstitutionDashboard />} />
-            <Route path="/dashboard/company" element={<CompanyDashboard />} />
+        <Route path="/dashboard/student" element={<StudentDashboard />} />
+        <Route path="/dashboard/graduate" element={<GraduateDashboard />} />
+        <Route path="/dashboard/institution" element={<InstitutionDashboard />} />
+        <Route path="/dashboard/company" element={<CompanyDashboard />} />
+        <Route path="/success-story/:id" element={<SuccessStoryDetail />} />
           </Routes>
         </Router>
       </LanguageProvider>
