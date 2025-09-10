@@ -98,8 +98,8 @@ export function CallToAction() {
             <Link to="/register/graduate">
               <Button 
                 size="lg" 
-                variant="outline" 
-                className="group px-10 py-4 border-white/30 text-white hover:bg-white hover:text-primary shadow-lg hover:shadow-xl hover-lift"
+                variant="secondary" 
+                className="group px-10 py-4 bg-white text-primary hover:bg-white/90 shadow-xl hover:shadow-2xl hover-lift"
               >
                 <span>Join as Graduate</span>
                 <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
@@ -108,8 +108,8 @@ export function CallToAction() {
             <Link to="/register/institution">
               <Button 
                 size="lg" 
-                variant="outline" 
-                className="group px-10 py-4 border-white/30 text-white hover:bg-white hover:text-primary shadow-lg hover:shadow-xl hover-lift"
+                variant="secondary" 
+                className="group px-10 py-4 bg-white text-primary hover:bg-white/90 shadow-xl hover:shadow-2xl hover-lift"
               >
                 <span>Join as Institution</span>
                 <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
@@ -118,8 +118,8 @@ export function CallToAction() {
             <Link to="/register/company">
               <Button 
                 size="lg" 
-                variant="outline" 
-                className="group px-10 py-4 border-white/30 text-white hover:bg-white hover:text-primary shadow-lg hover:shadow-xl hover-lift"
+                variant="secondary" 
+                className="group px-10 py-4 bg-white text-primary hover:bg-white/90 shadow-xl hover:shadow-2xl hover-lift"
               >
                 <span>Join as Company</span>
                 <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />

@@ -1,6 +1,10 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/card";
 import { Badge } from "./ui/badge";
 import { Button } from "./ui/button";
+import iprcImg from '../images/iprc.png';
+import tvetGraduateImg from '../images/TVET-graduates.png';
+import tvetStudentsImg from '../images/TVET-students.png';
+import privateSectorImg from '../images/private_sector.jpg';
 import { 
   GraduationCap, 
   Building2, 
@@ -61,7 +65,7 @@ export function Features() {
             { text: "Track graduate employment rates", icon: TrendingUp },
             { text: "Access funding opportunities", icon: HandHeart }
           ],
-          image: "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=800&h=600&fit=crop",
+          image: iprcImg,
           cta: "Register Institution"
         },
         {
@@ -75,7 +79,7 @@ export function Features() {
             { text: "Build professional networks", icon: Users },
             { text: "Access career guidance", icon: Lightbulb }
           ],
-          image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=600&fit=crop",
+          image: tvetStudentsImg,
           cta: "Join as Student"
         },
         {
@@ -89,7 +93,7 @@ export function Features() {
             { text: "Connect with employers", icon: MessageSquare },
             { text: "Access career development resources", icon: Zap }
           ],
-          image: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=800&h=600&fit=crop",
+          image: tvetGraduateImg,
           cta: "Join as Graduate"
         },
     {
@@ -103,7 +107,7 @@ export function Features() {
         { text: "Offer internship programs", icon: Briefcase },
         { text: "Invest in skills development", icon: Shield }
       ],
-      image: "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=800&h=600&fit=crop",
+      image: privateSectorImg,
       cta: "Register Company"
     }
   ];

@@ -5649,3 +5649,17 @@ html {
 .dark .to-rust-700 {
   --tw-gradient-to: #B7410E;
 }
+
+/* Custom scroll animation for success stories */
+@keyframes scrollRight {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-scroll-right {
+  animation: scrollRight 20s linear infinite;
+}
