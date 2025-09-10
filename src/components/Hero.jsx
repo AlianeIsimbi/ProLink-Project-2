@@ -3,6 +3,7 @@ import { ArrowRight, Users, BookOpen, Building2, Sparkles } from "lucide-react";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 import { useEffect, useState } from "react";
 import { RegistrationModal } from "./RegistrationModal";
+import heroImg from '../images/Hero.png';
 
 export function Hero() {
   const [isVisible, setIsVisible] = useState(false);
@@ -101,9 +102,9 @@ export function Hero() {
               {/* Shimmer effect overlay */}
               <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent animate-shimmer"></div>
               <ImageWithFallback
-                className="w-full h-[500px] lg:h-[600px] object-cover"
-                src="https://images.unsplash.com/photo-1662117940162-b666fea153cb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBhZnJpY2FuJTIwYXJ0aXN0JTIwd29ya3NwYWNlJTIwY3JlYXRpdmV8ZW58MXx8fHwxNzU2NDc3OTI0fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
-                alt="Modern African creative workspace"
+                className="w-full h-[500px] lg:h-[600px] object-contain"
+                src={heroImg}
+                alt="ProLink Hero Image"
               />
               {/* Gradient overlay */}
               <div className="absolute inset-0 bg-gradient-to-t from-rust-900/20 to-transparent"></div>
