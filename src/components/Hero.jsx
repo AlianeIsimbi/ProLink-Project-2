@@ -3,7 +3,7 @@ import { ArrowRight, Users, BookOpen, Building2, Sparkles } from "lucide-react";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 import { useEffect, useState } from "react";
 import { RegistrationModal } from "./RegistrationModal";
-import heroImg from '../images/Hero.png';
+import heroImg from '../images/new.png';
 
 export function Hero() {
   const [isVisible, setIsVisible] = useState(false);
